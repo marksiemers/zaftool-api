@@ -1,0 +1,21 @@
+name: zaftool-api
+version: 0.1.0
+
+authors:
+  - Mark Siemers <mark.siemers@gmail.com>
+
+targets:
+  zaftool-api:
+    main: src/zaftool-api.cr
+
+crystal: 0.22.0
+
+license: MIT
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+    branch: master
+  pg:
+    github: will/crystal-pg
+    branch: master
