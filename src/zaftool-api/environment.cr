@@ -4,5 +4,6 @@ require "pg"
 
 require "./config/*"
 
+require "./app/parsers/*"
 require "./app/modules/*"
-require "./app/controllers/*"
+require "./app/api/*"

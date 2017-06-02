@@ -1,5 +1,21 @@
 module Model
   extend self
+  extend DbToJSON
+
+  def all_as_json
+    PG_DB.query("SELECT * FROM models") do |rs|
+      result_set_to_json(rs)
+    end
+  end
+
+  def all_as_ndjson(output)
+    PG_DB.query("SELECT * FROM models") do |rs|
+      rs.each do
+        write_ndjson(output, rs.column_names, rs)
+        output.flush
+      end
+    end
+  end
 
   def search(model)
     results = [] of NamedTuple(name: String, type: String)
