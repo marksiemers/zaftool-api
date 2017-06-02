@@ -1,9 +1,8 @@
 require "kemal"
 require "json"
 require "pg"
-require "./zaftool-api/*"
+require "./zaftool-api/**"
 
-PG_DB = DB.open("postgres://postgres@localhost:5432/zaftool_development")
 at_exit { PG_DB.close }
 
 get "/" do |env|
