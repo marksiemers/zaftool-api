@@ -18,10 +18,22 @@ module Model
   end
 
   def search(model)
-    results = [] of NamedTuple(name: String, type: String)
-    PG_DB.query("SELECT name FROM models WHERE name % $1 LIMIT 10", model) do |rs|
+    search_query(model)
+  end
+
+  def search_query(model)
+    results = [] of NamedTuple(id: Int32, name: String, similarity: Float32)
+    query = <<-SQL
+      SELECT id, full_name, similarity($2, make_and_model_name) AS similarity
+      FROM model_years_matview
+      WHERE (make_and_model_name ILIKE $1)
+      ORDER BY similarity($2, make_and_model_name)
+      DESC LIMIT 10
+      SQL
+
+    PG_DB.query(query, ["%#{model}%", model]) do |rs|
       rs.each do
-        result = { name: rs.read(String), type: "model" }
+        result = { id: rs.read(Int32), name: rs.read(String), similarity: rs.read(Float32) }
         results << result
       end
     end
