@@ -1,4 +1,4 @@
-class CacheRecord
+class CacheOnFire::CacheRecord
   JSON.mapping(
     results: String,
     total_hits: UInt64,
