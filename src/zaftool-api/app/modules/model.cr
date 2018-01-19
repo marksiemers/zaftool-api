@@ -40,9 +40,3 @@ module Model
     results
   end
 end
-
-# SELECT id, full_name, similarity('duc', make_and_model_name) AS similarity
-# FROM model_years_matview
-# WHERE (make_and_model_name ILIKE '%duc%')
-# ORDER BY similarity('duc', make_and_model_name)
-# DESC LIMIT 10;
