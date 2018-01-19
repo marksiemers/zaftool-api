@@ -2,7 +2,7 @@ module DbToJSON
   def result_set_to_json(rs)
     JSON.build do |json|
       json.array do
-        rs.each{ result_row_insert_in_json(json, rs) }
+        rs.each { result_row_insert_in_json(json, rs) }
       end
     end
   end
@@ -10,14 +10,14 @@ module DbToJSON
   def result_row_insert_in_json(json, rs)
     col_names = rs.column_names
     json.object do
-      col_names.each{|col| json_encode_field json, col, rs.read }
+      col_names.each { |col| json_encode_field json, col, rs.read }
     end
   end
 
   def write_json(io, cols, rs)
     JSON.build(io) do |json|
       json.object do
-        cols.each{|col| json_encode_field(json, col, rs.read) }
+        cols.each { |col| json_encode_field(json, col, rs.read) }
       end
     end
   end
@@ -30,7 +30,7 @@ module DbToJSON
   def custom_encode(json, col, value)
     json.field col do
       json.array do
-        value.each{|e| json.scalar e }
+        value.each { |e| json.scalar e }
       end
     end
   end
@@ -42,7 +42,7 @@ module DbToJSON
     when NotSupported
       # skip
     else
-      json.field(col){ value.to_json(json) }
+      json.field(col) { value.to_json(json) }
     end
   end
 

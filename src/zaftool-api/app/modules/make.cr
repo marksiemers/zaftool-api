@@ -25,7 +25,7 @@ module Make
     results = [] of NamedTuple(id: Int32, name: String, type: String)
     PG_DB.query("SELECT id, name FROM makes WHERE name % $1 LIMIT 10", make) do |rs|
       rs.each do
-        result = { id: rs.read(Int32), name: rs.read(String), type: "make" }
+        result = {id: rs.read(Int32), name: rs.read(String), type: "make"}
         results << result
       end
     end

@@ -33,7 +33,7 @@ module Model
 
     PG_DB.query(query, ["%#{model}%", model]) do |rs|
       rs.each do
-        result = { id: rs.read(Int32), name: rs.read(String), similarity: rs.read(Float32) }
+        result = {id: rs.read(Int32), name: rs.read(String), similarity: rs.read(Float32)}
         results << result
       end
     end

@@ -6,11 +6,10 @@ module User
     sql = "SELECT name, email FROM users"
     PG_DB.query(sql) do |rs|
       rs.each do
-        user = { name: rs.read(String), email: rs.read(String) }
+        user = {name: rs.read(String), email: rs.read(String)}
         users << user
       end
     end
     users
   end
-
 end
