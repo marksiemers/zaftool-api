@@ -1,0 +1,23 @@
+{
+  "name": "zaftool-api",
+  "scripts": {
+  },
+  "env": {
+    "DATABASE_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/crystal-lang/heroku-buildpack-crystal.git"
+    }
+  ]
+}
